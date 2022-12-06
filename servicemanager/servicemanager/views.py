@@ -180,6 +180,13 @@ def doccenter(request):  # sourcery skip: avoid-builtin-shadow
             signature=signature,
         )
         messages.success(request, "Request Added succesfully")
+
+        dept = Department.objects.get(name=department).vote
+        new_vote_head = int(dept) - int(cost)
+        new_vote = Department.objects.get(name=department)
+        new_vote.vote = new_vote_head
+        new_vote.save()
+
     except Exception as e:
         print(e)
 
@@ -298,7 +305,8 @@ def issuerequest(request, bookID):
 def myissues(request):
     if Employee.objects.filter(staff_id=request.user):
         # employee = employee.objects.filter(staff_id=request.user)[0]
-        issues = Docservice.objects.filter(employee=request.user)
+        # issues = Docservice.objects.filter(employee=request.user)
+        issues = Docservice.objects.all()
         print(issues)
 
         # if request.GET.get('issued') is not None:
