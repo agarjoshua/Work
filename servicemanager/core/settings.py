@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # LOCAL
     'user',
     'servicemanager',
+    #'django_countries'
     # 3RD PARTY DEVELOPMENT APPS(Delete after deployment)
     # 'clearcache',
 

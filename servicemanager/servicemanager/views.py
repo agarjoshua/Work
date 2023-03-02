@@ -104,6 +104,8 @@ def addrequest(request):  # sourcery skip: avoid-builtin-shadow
     test = Employee.objects.all()
     service_type = ServiceType.objects.all()
     all_departments = Department.objects.all()
+    doc_service = Docservice.objects.all()
+    print(doc_service.status)
 
     if request.method != "POST":
         return render(
@@ -112,6 +114,7 @@ def addrequest(request):  # sourcery skip: avoid-builtin-shadow
             {
                 "service_type": service_type,
                 "department": all_departments,
+                "doc_service": doc_service
             },
         )
     department = request.POST.get("department")
@@ -165,6 +168,10 @@ def doccenter(request):  # sourcery skip: avoid-builtin-shadow
         messages.success(request, f"There was an error: {e}")
     details = request.POST.get("details")
     signature = request.FILES.get("signature")
+    status = request.POST.get('status')
+    if status in [choice[0] for choice in Docservice.STATUS_CHOICES]:
+        status = status
+        
 
     try:
         test = Docservice.objects.create(
@@ -176,6 +183,7 @@ def doccenter(request):  # sourcery skip: avoid-builtin-shadow
             pages=pages,
             rate=rate,
             cost=cost,
+            status = status,
             details=details,
             signature=signature,
         )

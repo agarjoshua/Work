@@ -13,6 +13,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <style>
+
       button:hover {
         transform: scale(1.1);
         transition: 0.2s ease-in-out;
@@ -29,7 +30,7 @@
       .error {
         color: rgb(255, 58, 58);
       }
-
+      
     </style>
 
     {% load static %}
@@ -56,14 +57,9 @@
     <section class="container md:mx-auto max-w-5xl">
       {% for message in messages %}
       <h3
-        {%
-        if
-        message.tags
-        %}
+        {% if message.tags %}
         class="{{ message.tags }} p-2  font-bold tracking-wider text-lg"
-        {%
-        endif
-        %}
+        {% endif %}
       >
         {{message}}
       </h3>

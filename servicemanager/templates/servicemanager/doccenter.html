@@ -67,10 +67,21 @@
     <input class="px-2 py-1 bg-transparent border-white border-2 rounded text-white" type="file" name="document" />
   </div> -->
 
+  <div class="w-full max-w-lg flex flex-col mt-4 justify-center">
+    <label class="text-xl mb-2" for="">Status</label>
+    <select name="status">
+      {% for choice in doc_service.STATUS_CHOICES %}
+      <option value="{{ choice.0 }}" {% if doc_service.status == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  
+
 
   <button class="text-white place-self-center hover:shadow-md text-xl w-full rounded bg-pink-500 px-4 py-1 mt-8"
     type="submit">
-    Make Request
+    Record Request
   </button>
 </form>
 {% endblock content%}

@@ -53,6 +53,13 @@ class Docservice(models.Model):
     pages = models.IntegerField(default=0)
     rate = models.IntegerField(default=0)
     cost = models.IntegerField(default=0)
+    STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ]
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
     signature = models.CharField(null=True, blank=True,max_length=150)
 
     # AUTO FIELDS
